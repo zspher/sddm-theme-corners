@@ -1,6 +1,6 @@
-import QtGraphicalEffects 1.15
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Effects
 
 Item {
     implicitHeight: powerButton.height
@@ -127,7 +127,7 @@ Item {
 
                         PropertyChanges {
                             target: iconOverlay
-                            color: Qt.darker(config.PopupActiveColor, 1.2)
+                            colorizationColor: Qt.darker(config.PopupActiveColor, 1.2)
                         }
 
                         PropertyChanges {
@@ -161,12 +161,13 @@ Item {
                         sourceSize: Qt.size(powerEntry.width * 0.5, powerEntry.height * 0.5)
                     }
 
-                    ColorOverlay {
+                    MultiEffect {
                         id: iconOverlay
-
-                        anchors.fill: powerIcon
-                        source: powerIcon
-                        color: config.PopupColor
+                            source: powerIcon
+                            anchors.fill: powerIcon
+                            colorization: 1.0
+                            colorizationColor: config.PopupColor
+                            brightness: 1.0
                     }
 
                     Text {

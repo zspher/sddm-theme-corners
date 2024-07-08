@@ -1,4 +1,4 @@
-import QtGraphicalEffects 1.12
+import QtQuick.Effects
 import QtQml.Models 2.15
 import QtQuick 2.15
 import QtQuick.Controls 2.15
@@ -217,28 +217,36 @@ Column {
 
         Image {
             id: userPicture
-
-            enabled: config.UserPictureEnabled === "true"
-            visible: config.UserPictureEnabled === "true"
+            visible: false
 
             source: ""
             height: inputWidth / 1.5
             width: inputWidth / 1.5
             anchors.horizontalCenter: parent.horizontalCenter
             fillMode: Image.PreserveAspectCrop
+        }
+
+        Item {
+            id: mask
+            width: userPicture.width
+            height: userPicture.height
             layer.enabled: true
-
+            visible: false
             Rectangle {
-                id: mask
-
-                anchors.fill: parent
+                width: userPicture.width
+                height: userPicture.height
                 radius: inputWidth / 3
-                visible: false
+                color: config.UserColor
             }
+        }
 
-            layer.effect: OpacityMask {
-                maskSource: mask
-            }
+        MultiEffect {
+            source: userPicture
+            anchors.fill: userPicture
+            maskEnabled: true
+            maskSource: mask
+            enabled: config.UserPictureEnabled === "true"
+            visible: config.UserPictureEnabled === "true"
         }
 
         Popup {

@@ -1,0 +1,13 @@
+[SddmGreeterTheme]
+Name=Corners
+Description=customizable SDDM theme that puts stuff on your screen corners
+Type=sddm-theme
+Version=2.1
+Website=https://github.com/aczw/sddm-theme-corners
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Theme-Id=Corners
+Theme-API=2.0
+License=MIT
+QtVersion=6
